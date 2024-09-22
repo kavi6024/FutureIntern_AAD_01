@@ -7,7 +7,7 @@ class ConversionPage extends StatefulWidget {
   ConversionPage({required this.category});
 
   @override
-  _ConversionPageState createState() => _ConversionPageState();
+  State<ConversionPage> createState() => _ConversionPageState();
 }
 
 class _ConversionPageState extends State<ConversionPage> {
@@ -42,13 +42,13 @@ class _ConversionPageState extends State<ConversionPage> {
               keyboardType: TextInputType.number,
               decoration: InputDecoration(
                 labelText: 'Enter ${widget.category} value',
-                border: OutlineInputBorder(),
+                border: const OutlineInputBorder(),
               ),
               onChanged: (value) {
                 _convertUnit(value);
               },
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             // Dropdown for selecting the 'from' unit
             DropdownButton<String>(
               value: fromUnit,
@@ -65,7 +65,7 @@ class _ConversionPageState extends State<ConversionPage> {
                 });
               },
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             // Dropdown for selecting the 'to' unit
             DropdownButton<String>(
               value: toUnit,
@@ -82,11 +82,11 @@ class _ConversionPageState extends State<ConversionPage> {
                 });
               },
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             // Disabled TextField for displaying the converted value
             TextField(
               enabled: false,
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 labelText: 'Converted Value',
                 border: OutlineInputBorder(),
               ),
@@ -131,26 +131,34 @@ class _ConversionPageState extends State<ConversionPage> {
     switch (fromUnit) {
       case 'Meters':
         if (toUnit == 'Kilometers') return metersToKilometers(value).toString();
-        if (toUnit == 'Centimeters') return metersToCentimeters(value).toString();
+        if (toUnit == 'Centimeters') {
+          return metersToCentimeters(value).toString();
+        }
         if (toUnit == 'Inches') return metersToInches(value).toString();
         if (toUnit == 'Feet') return metersToFeet(value).toString();
         break;
       case 'Kilometers':
         if (toUnit == 'Meters') return kilometersToMeters(value).toString();
-        if (toUnit == 'Centimeters') return kilometersToCentimeters(value).toString();
+        if (toUnit == 'Centimeters') {
+          return kilometersToCentimeters(value).toString();
+        }
         if (toUnit == 'Inches') return kilometersToInches(value).toString();
         if (toUnit == 'Feet') return kilometersToFeet(value).toString();
         break;
       case 'Centimeters':
         if (toUnit == 'Meters') return centimetersToMeters(value).toString();
-        if (toUnit == 'Kilometers') return centimetersToKilometers(value).toString();
+        if (toUnit == 'Kilometers') {
+          return centimetersToKilometers(value).toString();
+        }
         if (toUnit == 'Inches') return centimetersToInches(value).toString();
         if (toUnit == 'Feet') return centimetersToFeet(value).toString();
         break;
       case 'Inches':
         if (toUnit == 'Meters') return inchesToMeters(value).toString();
         if (toUnit == 'Kilometers') return inchesToKilometers(value).toString();
-        if (toUnit == 'Centimeters') return inchesToCentimeters(value).toString();
+        if (toUnit == 'Centimeters') {
+          return inchesToCentimeters(value).toString();
+        }
         if (toUnit == 'Feet') return inchesToFeet(value).toString();
         break;
       case 'Feet':
@@ -184,7 +192,9 @@ class _ConversionPageState extends State<ConversionPage> {
   String _convertTemperature(double value) {
     switch (fromUnit) {
       case 'Celsius':
-        if (toUnit == 'Fahrenheit') return celsiusToFahrenheit(value).toString();
+        if (toUnit == 'Fahrenheit') {
+          return celsiusToFahrenheit(value).toString();
+        }
         if (toUnit == 'Kelvin') return celsiusToKelvin(value).toString();
         break;
       case 'Fahrenheit':
@@ -202,7 +212,9 @@ class _ConversionPageState extends State<ConversionPage> {
   String _convertVolume(double value) {
     switch (fromUnit) {
       case 'Liters':
-        if (toUnit == 'Milliliters') return litersToMilliliters(value).toString();
+        if (toUnit == 'Milliliters') {
+          return litersToMilliliters(value).toString();
+        }
         if (toUnit == 'Gallons') return litersToGallons(value).toString();
         break;
       case 'Milliliters':
@@ -211,7 +223,9 @@ class _ConversionPageState extends State<ConversionPage> {
         break;
       case 'Gallons':
         if (toUnit == 'Liters') return gallonsToLiters(value).toString();
-        if (toUnit == 'Milliliters') return gallonsToMilliliters(value).toString();
+        if (toUnit == 'Milliliters') {
+          return gallonsToMilliliters(value).toString();
+        }
         break;
     }
     return value.toString();
@@ -220,16 +234,28 @@ class _ConversionPageState extends State<ConversionPage> {
   String _convertSpeed(double value) {
     switch (fromUnit) {
       case 'Kilometers per hour':
-        if (toUnit == 'Miles per hour') return kilometersPerHourToMilesPerHour(value).toString();
-        if (toUnit == 'Meters per second') return kilometersPerHourToMetersPerSecond(value).toString();
+        if (toUnit == 'Miles per hour') {
+          return kilometersPerHourToMilesPerHour(value).toString();
+        }
+        if (toUnit == 'Meters per second') {
+          return kilometersPerHourToMetersPerSecond(value).toString();
+        }
         break;
       case 'Miles per hour':
-        if (toUnit == 'Kilometers per hour') return milesPerHourToKilometersPerHour(value).toString();
-        if (toUnit == 'Meters per second') return milesPerHourToMetersPerSecond(value).toString();
+        if (toUnit == 'Kilometers per hour') {
+          return milesPerHourToKilometersPerHour(value).toString();
+        }
+        if (toUnit == 'Meters per second') {
+          return milesPerHourToMetersPerSecond(value).toString();
+        }
         break;
       case 'Meters per second':
-        if (toUnit == 'Kilometers per hour') return metersPerSecondToKilometersPerHour(value).toString();
-        if (toUnit == 'Miles per hour') return metersPerSecondToMilesPerHour(value).toString();
+        if (toUnit == 'Kilometers per hour') {
+          return metersPerSecondToKilometersPerHour(value).toString();
+        }
+        if (toUnit == 'Miles per hour') {
+          return metersPerSecondToMilesPerHour(value).toString();
+        }
         break;
     }
     return value.toString();
@@ -238,23 +264,39 @@ class _ConversionPageState extends State<ConversionPage> {
   String _convertArea(double value) {
     switch (fromUnit) {
       case 'Square meters':
-        if (toUnit == 'Square kilometers') return squareMetersToSquareKilometers(value).toString();
-        if (toUnit == 'Square feet') return squareMetersToSquareFeet(value).toString();
+        if (toUnit == 'Square kilometers') {
+          return squareMetersToSquareKilometers(value).toString();
+        }
+        if (toUnit == 'Square feet') {
+          return squareMetersToSquareFeet(value).toString();
+        }
         if (toUnit == 'Acres') return squareMetersToAcres(value).toString();
         break;
       case 'Square kilometers':
-        if (toUnit == 'Square meters') return squareKilometersToSquareMeters(value).toString();
-        if (toUnit == 'Square feet') return squareKilometersToSquareFeet(value).toString();
+        if (toUnit == 'Square meters') {
+          return squareKilometersToSquareMeters(value).toString();
+        }
+        if (toUnit == 'Square feet') {
+          return squareKilometersToSquareFeet(value).toString();
+        }
         if (toUnit == 'Acres') return squareKilometersToAcres(value).toString();
         break;
       case 'Square feet':
-        if (toUnit == 'Square meters') return squareFeetToSquareMeters(value).toString();
-        if (toUnit == 'Square kilometers') return squareFeetToSquareKilometers(value).toString();
+        if (toUnit == 'Square meters') {
+          return squareFeetToSquareMeters(value).toString();
+        }
+        if (toUnit == 'Square kilometers') {
+          return squareFeetToSquareKilometers(value).toString();
+        }
         if (toUnit == 'Acres') return squareFeetToAcres(value).toString();
         break;
       case 'Acres':
-        if (toUnit == 'Square meters') return acresToSquareMeters(value).toString();
-        if (toUnit == 'Square kilometers') return acresToSquareKilometers(value).toString();
+        if (toUnit == 'Square meters') {
+          return acresToSquareMeters(value).toString();
+        }
+        if (toUnit == 'Square kilometers') {
+          return acresToSquareKilometers(value).toString();
+        }
         if (toUnit == 'Square feet') return acresToSquareFeet(value).toString();
         break;
     }
